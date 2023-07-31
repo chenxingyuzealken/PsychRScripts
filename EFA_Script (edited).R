@@ -53,7 +53,7 @@ write.csv(datamatrix>0.90|datamatrix<(-0.90), file="Suspect_Correlations.csv")
 #remove one variable from each pair to omit from the dataset
 overcorrelated <- c("<..>","<..>") #replace "<..>" with the variables that you wish to remove. You can add as many variables as you need; it doesn't necessarily need to be two variables
 data_four <- data_three %>%
-  select(!overcorrelated) #remove the above specified variables from the data
+  select(!all_of(overcorrelated)) #remove the above specified variables from the data
 
 
 #KMO test
