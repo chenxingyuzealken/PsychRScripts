@@ -12,6 +12,7 @@
 
 ##Watkins, M. W. (2021). A step-by-step guide to exploratory factor analysis with R and Rstudio. Routledge. https://doi.org/10.4324/9781003120001  
 
+##all credit goes to the references listed above
 
 #load needed packages
 library(psych)
@@ -45,12 +46,14 @@ corrplot(datamatrix, method="number")
 #You should first ensure that there are several coefficients >=.30 (Hair et al., 2019, as cited in Watkins, 2021; Tabachnick & Fidell, 2019, as cited in Watkins, 2021)
 #Correlations should not be above 0.90 (Tabachnick and Fidell, 2019, , as cited in Watkins, 2021)
 #If there are variables that are too highly correlated (i.e., r>0.90), select one variable from each pair to omit from the dataset (Murphy, 2021)
-write.csv(cor(data_three)>0.9, file="Suspect_Correlations.csv")
-write.csv(cor(data_three), file = "Correlation_Values.csv")
+write.csv(datamatrix, file = "Correlation_Values.csv")
+write.csv(datamatrix>0.90|datamatrix<(-0.90), file="Suspect_Correlations.csv")
+
 #use the CSV files to find variables that are too highly correlated (r>0.90) and select one variable from each pair to omit from the dataset (Murphy, 2021)
 #remove one variable from each pair to omit from the dataset
 overcorrelated <- c("<..>","<..>") #replace "<..>" with the variables that you wish to remove. You can add as many variables as you need; it doesn't necessarily need to be two variables
-data_four <- data_three[ ,!(names(data_three) %in% overcorrelated)] #remove the above specified variables from the data
+data_four <- data_three %>%
+  select(!overcorrelated) #remove the above specified variables from the data
 
 
 #KMO test
@@ -94,9 +97,8 @@ print(fit, digits=3, sort=TRUE)
 #STEP 4: EVALUATE WHAT YOU HAVE PRODUCED
 
 #export factor loadings
-dim_factor_loadings <- dim(fit$loadings)
-no_of_variables <- dim_factor_loadings[1]
-no_of_factors <- dim_factor_loadings[2]
+no_of_variables <- nrow(fit$loadings)
+no_of_factors <- ncol(fit$loadings)
 
 round(fit$loadings[1:no_of_variables,], no_of_factors)
 
@@ -136,11 +138,3 @@ alpha(f1, check.keys=TRUE)$total[1]
 alpha(f2, check.keys=TRUE)$total[1]
 alpha(f3, check.keys=TRUE)$total[1]
 alpha(f4, check.keys=TRUE)$total[1]
-
-
-
-
-
-
-
-
