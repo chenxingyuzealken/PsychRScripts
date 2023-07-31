@@ -44,7 +44,7 @@ datamatrix <- cor(data_three)
 corrplot(datamatrix, method="number")
 #interpretation#
 #You should first ensure that there are several coefficients >= abs(.30) (Hair et al., 2019, as cited in Watkins, 2021; Tabachnick & Fidell, 2019, as cited in Watkins, 2021)
-#Correlations should not be above abs(0.90) (Tabachnick and Fidell, 2019, , as cited in Watkins, 2021)
+#Correlations should not be above abs(0.90) (Tabachnick and Fidell, 2019, as cited in Watkins, 2021)
 #If there are variables that are too highly correlated (i.e., r>abs(0.90), select one variable from each pair to omit from the dataset (Murphy, 2021)
 write.csv(datamatrix, file = "Correlation_Values.csv")
 write.csv(datamatrix>0.90|datamatrix<(-0.90), file="Suspect_Correlations.csv")
@@ -61,7 +61,7 @@ KMO(data_four) #look at the results and eliminate all low-contribution variables
 #interpretation#
 #KMO values for each variable and the total sample should be reviewed (Watkins, 2021)
 #KMO values <0.50 are unacceptable (Kaiser, 1974, as cited in Watkins, 2021)
-#some scholars recommend a minimum value of 0.60 (Mvududu & Sink, 2013, , as cited in Watkins, 2021; Watson, 2017, , as cited in Watkins, 2021)
+#some scholars recommend a minimum value of 0.60 (Mvududu & Sink, 2013, as cited in Watkins, 2021; Watson, 2017, as cited in Watkins, 2021)
 #values of >=0.70 is preferred (Hoelzle & Meyer, 2013, as cited in Watkins, 2021)
 
 #Bartlett's test of sphericity
