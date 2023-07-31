@@ -43,9 +43,9 @@ data_three <- na.omit(data_two)
 datamatrix <- cor(data_three)
 corrplot(datamatrix, method="number")
 #interpretation#
-#You should first ensure that there are several coefficients >=.30 (Hair et al., 2019, as cited in Watkins, 2021; Tabachnick & Fidell, 2019, as cited in Watkins, 2021)
-#Correlations should not be above 0.90 (Tabachnick and Fidell, 2019, , as cited in Watkins, 2021)
-#If there are variables that are too highly correlated (i.e., r>0.90), select one variable from each pair to omit from the dataset (Murphy, 2021)
+#You should first ensure that there are several coefficients >=|.30| (Hair et al., 2019, as cited in Watkins, 2021; Tabachnick & Fidell, 2019, as cited in Watkins, 2021)
+#Correlations should not be above |0.90| (Tabachnick and Fidell, 2019, , as cited in Watkins, 2021)
+#If there are variables that are too highly correlated (i.e., r>|0.90|), select one variable from each pair to omit from the dataset (Murphy, 2021)
 write.csv(datamatrix, file = "Correlation_Values.csv")
 write.csv(datamatrix>0.90|datamatrix<(-0.90), file="Suspect_Correlations.csv")
 
